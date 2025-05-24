@@ -1,0 +1,73 @@
+/* 🌌 Background */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: url('../Img/img_bg.png') no-repeat center center/cover;
+    color: #fff;
+    text-align: center;
+}
+
+/* 📌 Logo */
+header .logo {
+    width: 150px;
+    margin: 20px;
+}
+
+/* 🧭 Titre principal */
+main h1 {
+    font-size: 2em;
+    margin-bottom: 30px;
+}
+
+/* 📦 Conteneur de cartes */
+.card-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+/* 🪪 Carte */
+.card {
+    background-color: #fff;
+    color: #000;
+    border-radius: 12px;
+    padding: 20px;
+    width: 280px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+}
+.card:hover {
+    transform: translateY(-10px);
+}
+
+/* 🎨 Variante sombre */
+.card.dark {
+    background-color: #003366;
+    color: #fff;
+}
+
+/* 🔘 Bouton */
+.btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #0b5ed7;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+.btn:hover {
+    background-color: #084298;
+}
+
+/* Bouton blanc (pour fond foncé) */
+.btn.white {
+    background-color: white;
+    color: #003366;
+}
+.btn.white:hover {
+    background-color: #ddd;
+}

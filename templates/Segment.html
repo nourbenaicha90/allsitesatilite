@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Segment</title>
+ 
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/Segment.css') }}">
+
+</head>
+<body>
+  <header>
+    <div class="logo-container">
+    
+       <img src="{{ url_for('static', filename='Img/logo.png') }}" alt="AgriSat Logo">
+    </div>
+  </header>
+<form id="uploadForm" enctype="multipart/form-data" method="POST" action="/predict">
+  <input type="file" id="imageUpload" name="image" accept="image/*" style="display: none;">
+  <button class="btn" type="button" id="uploadTrigger">Upload Image</button>
+</form>
+
+<div id="result" style="margin-top: 20px; font-size: 18px;"></div>
+
+<script>
+  const uploadBtn = document.getElementById('uploadTrigger');
+  const imageInput = document.getElementById('imageUpload');
+  const uploadForm = document.getElementById('uploadForm');
+  const resultDiv = document.getElementById('result');
+
+  uploadBtn.addEventListener('click', () => {
+    imageInput.click();
+  });
+
+  imageInput.addEventListener('change', () => {
+    const formData = new FormData(uploadForm);
+
+    fetch('/predict', {
+      method: 'POST',
+      body: formData
+    })
+    .then(res => res.json())
+    .then(data => {
+      resultDiv.textContent = 'Prediction: ' + data.prediction;
+    })
+    .catch(error => {
+      resultDiv.textContent = 'Error: ' + error;
+    });
+  });
+</script>
+
+  
+</body>
+</html>

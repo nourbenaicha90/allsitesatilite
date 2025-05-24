@@ -1,0 +1,92 @@
+/* 🌍 Réinitialisation et Styles Globaux */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: url('../Img/img_bg.png') no-repeat center center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+
+/* 🏠 Container Principal */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+/* 📦 Boîte de Connexion */
+.login-box {
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 320px;
+}
+
+/* 🖼️ Logo */
+.logo {
+    width: 80px;
+    margin-bottom: 15px;
+}
+
+/* 📝 Titre */
+h2 {
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* 🔑 Champs du Formulaire */
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* 🎯 Effet au focus */
+input:focus {
+    outline: none;
+    border-color: #4CAF50;
+    box-shadow: 0px 0px 5px rgba(76, 175, 80, 0.5);
+}
+
+/* 🎮 Bouton de Connexion */
+.btn {
+    width: 100%;
+    padding: 12px;
+    background: #4CAF50;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+/* 🚀 Effet hover sur le bouton */
+.btn:hover {
+    background: #2E7D32;
+}
+
+/* 📱 Responsive */
+@media (max-width: 400px) {
+    .login-box {
+        width: 90%;
+        padding: 30px;
+    }
+}

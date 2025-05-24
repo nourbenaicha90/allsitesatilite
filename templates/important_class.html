@@ -1,0 +1,235 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Important Class</title>
+      <link rel="stylesheet" href="{{ url_for('static', filename='styles/important-class.css') }}">
+</head>
+<body>
+  <header>
+    <div class="logo-container">
+    <img src="{{ url_for('static', filename='Img/logo.png') }}" alt="AgriSat Logo">
+
+    </div>
+  </header>
+
+  <div class="container">
+   
+    <input type="file" id="imageUpload" accept="image/*" style="display: none;">
+  
+ 
+    <button class="btn" id="uploadTrigger">Upload Image</button>
+  </div>
+  
+  <script>
+   
+    const uploadBtn = document.getElementById('uploadTrigger');
+    const imageInput = document.getElementById('imageUpload');
+  
+
+    uploadBtn.addEventListener('click', () => {
+      imageInput.click();
+    });
+  </script>
+  
+</body>
+</html>
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Classification</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .backgroundCardImportClass {
+            background-image: url('/static/Img/img_bg.png');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+        }
+
+        .card_important_class {
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            max-width: 1000px;
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+        }
+
+        .logocard_container {
+            width: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .logocard_container img {
+            width: 100%;
+            max-width: 150px;
+            height: auto;
+        }
+
+        .card_Part1, .card_Part2 {
+            flex: 1;
+        }
+
+        .card_important_class img {
+            border-radius: 10px;
+        }
+
+        .info {
+            margin-top: 20px;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul li {
+            background: #f9f9f9;
+            padding: 8px 12px;
+            margin-bottom: 5px;
+            border-radius: 6px;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .custom-file-upload {
+            display: inline-block;
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: #28a745;
+            color: white;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            user-select: none;
+            margin-right: 10px;
+        }
+
+        .custom-file-upload:hover {
+            background-color: #218838;
+        }
+
+        #file-name {
+            font-style: italic;
+            color: #555;
+            vertical-align: middle;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        h2, h3, h4 {
+            margin-top: 0;
+        }
+         /* 📱 Responsive layout for phones */
+        @media (max-width: 768px) {
+            .card_important_class {
+                flex-direction: column;
+                padding: 15px;
+            }
+
+            .custom-file-upload, button {
+                width: 100%;
+                margin: 10px 0;
+            }
+
+            #file-name {
+                display: block;
+                margin-top: 5px;
+            }}
+        
+    </style>
+</head>
+<body class="backgroundCardImportClass">
+    <div class="card_important_class">
+        <div class="card_Part1">
+            <div class="logocard_container">
+                <img src="{{ url_for('static', filename='Img/logo.png') }}" alt="AgriSat Logo">
+            </div>
+
+            <h2>📤 Upload a .tif Image</h2>
+            <form method="POST" enctype="multipart/form-data">
+                <label for="file-upload" class="custom-file-upload">
+                    📁 Choose .tif file
+                </label>
+                <input id="file-upload" type="file" name="file" accept=".tif,.tiff" required />
+                <span id="file-name">No file chosen</span>
+                <button type="submit">📊 Classify</button>
+            </form>
+
+            {% if result %}
+                <h3>🔍 Result:</h3>
+                <p>{{ result }}</p>
+
+                <h4>📝 Image Information:</h4>
+                <ul>
+                    <li>📐 Width: {{ img_info.width }} px</li>
+                    <li>📏 Height: {{ img_info.height }} px</li>
+                    <li>📊 Number of Bands: {{ img_info.bands }}</li>
+                    <li>🌿 Green Space Percentage: {{ green_percent | round(2) }}%</li>
+                </ul>
+            {% endif %}
+        </div>
+
+        <div class="card_Part2">
+            {% if rgb_image %}
+                <h4>📷 Natural Image:</h4>
+                <img src="{{ url_for('static', filename=rgb_image) }}" alt="Natural Image" style="width: 100%;" />
+            {% endif %}
+        </div>
+    </div>
+
+    <script>
+        const fileInput = document.getElementById('file-upload');
+        const fileNameSpan = document.getElementById('file-name');
+
+        fileInput.addEventListener('change', () => {
+            fileNameSpan.textContent = fileInput.files.length > 0 ? fileInput.files[0].name : 'No file chosen';
+        });
+    </script>
+</body>
+</html>

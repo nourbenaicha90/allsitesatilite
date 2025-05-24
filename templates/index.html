@@ -1,0 +1,146 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+    <title>AgriSat - AI Crop Mapping</title>
+</head>
+<body>
+    <!-- 🛰️ Navigation Bar -->
+    <header>
+        <div class="content">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='Img/logo.png') }}" alt="AgriSat Logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#search">🔍 Search</a></li>
+                </ul>
+            </nav>
+        </div> 
+    </header>
+
+    <!-- 🌿 Hero Section -->
+    <section class="hero" id="home">
+        <div class="content_main">
+            <div class="hero-content">
+                <h1>AI-Powered Crop Classification & Mapping</h1>
+                <p>
+                    This web application is designed to classify and map agricultural crops 
+                    using satellite images and machine learning algorithms.
+                </p>
+                <a href="{{ url_for('newpage') }}"  class="btn" id="get-started-btn">Get Started</a>
+            </div>
+
+            <div class="image-container">
+                <img src="{{ url_for('static', filename='Img/img_satilite1.png') }}" alt="AgriSat Logo" class="satellite">
+                <img src="{{ url_for('static', filename='Img/img_plate.png') }}" alt="Plate Image" class="plate">
+            </div>
+        </div>
+    </section>
+
+    <!-- 📌 Features Section -->
+    <section class="features" id="about">
+        <div class="container">
+            <h2>Features of the Crop Classification &<br> Mapping Platform</h2>
+            <p>
+                Our platform offers satellite image processing, allowing users to upload high-resolution images for analysis.
+                With AI-driven machine learning models, the system accurately classifies various crop types based on deep learning algorithms.
+                Users can explore results through interactive maps, which display classified crops with geospatial precision,
+                providing insights into land use and farming patterns.
+            </p>
+        </div>
+
+        <!-- 🌍 Decorative Satellite Images -->
+        <img src="{{ url_for('static', filename='Img/img_satilite.png') }}" alt="Satellite Left" class="satellite-left">
+        <img src="{{ url_for('static', filename='Img/img_satilite.png') }}" alt="Satellite Right" class="satellite-right">
+    </section>
+
+    <section class="hero-section">
+        <div class="overlay">
+            <div class="hero-content">
+                <p>
+                    Our platform offers satellite image processing, allowing users to upload high-resolution images for analysis.
+                    With AI-driven machine learning models, the system accurately classifies various crop types based on deep learning algorithms.
+                    Users can explore results through interactive maps, which display classified crops with geospatial precision,
+                    providing insights into land use and farming patterns.
+                </p>
+                 <a href="{{ url_for('newpage') }}"  class="btn" id="get-started-btn">Get Started</a>
+            </div>
+            <div class="image-container">
+                <img src="{{ url_for('static', filename='Img/img_plate.png') }}" alt="Plate Image" class="plate">
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <h2>Testimonials</h2>
+        <div class="testimonial-container">
+
+            <img src="{{ url_for('static', filename='Img/img_globe.png') }}" alt="Globe" class="globe">
+            
+            <button class="prev-btn" onclick="prevTestimonial()">&lt;</button>
+            
+            <div class="testimonial-card">
+                <div class="testimonial-text">
+                    <h3 id="name">Dr. Sarah Thompson</h3>
+                    <p class="role" id="role">Scientist</p>
+                    <p id="review">
+                        "This platform has revolutionized the way we analyze satellite imagery for crop classification.
+                        The AI-driven models provide accurate results, helping researchers like me make data-driven 
+                        decisions for sustainable farming."
+                    </p>
+                </div>
+                <div class="testimonial-image">
+                    <img id="profile-pic" src="{{ url_for('static', filename='Img/person1.jpg') }}" alt="Dr. Sarah Thompson">
+                </div>
+            </div>
+    
+            <button class="next-btn" onclick="nextTestimonial()">&gt;</button>
+        </div>
+    </section>
+
+    <script src="scripts/testimonials.js"></script>
+
+    <section class="contact-section" id="contact">
+        <h2>Contact</h2>
+        <div class="contact-form">
+            <form action="#" method="POST">
+                <input type="text" name="fullname" placeholder="Full name" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <textarea name="message" placeholder="Message ..." required></textarea>
+                <button type="submit">Send</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-left">
+                <p><span class="icon">📞</span> Nbr phone  +21399 999 99</p>
+                <p><span class="icon">📧</span> Email : contact@exemple.com</p>
+                <p><span class="icon">🌍</span> Web : agrisat.com</p>
+            </div>
+            <div class="footer-center">
+                <img src="{{ url_for('static', filename='Img/logo.png') }}" alt="AgriSat Logo" class="footer-logo">
+            </div>
+            <div class="footer-right">
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+        <hr>
+        <p class="copyright">© 2025 Mon Site. Tous droits réservés.</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='scripts/script.js') }}"></script>
+</body>
+</html>

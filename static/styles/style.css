@@ -1,0 +1,547 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+/* Réinitialisation de base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+html {
+    scroll-behavior: smooth; /* 🔄 Animation de défilement fluide */
+}
+
+section {
+    padding: 100px 20px;
+    height: 100vh; /* 📏 Chaque section occupe 100% de la hauteur de l'écran */
+}
+/* 🌟 Style de la barre de navigation */
+header {
+    background: rgba(130, 122, 122, 0.8);
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+/* Conteneur pour la navigation */
+.content {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+
+/* Logo */
+.logo img {
+    width: 120px;
+}
+
+/* Navigation */
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    transition: 0.3s;
+}
+
+nav ul li a:hover {
+    color: #4CAF50;
+}
+
+/* 🌍 Section Hero */
+.hero {
+    background: url('../Img/img_bg.png') no-repeat center center/cover;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Conteneur principal */
+.content_main {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 80%;
+    max-width: 1200px;
+    color: white;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Contenu textuel */
+.hero-content {
+    max-width: 50%;
+}
+
+.hero-content h1 {
+    font-size: 36px;
+    margin-bottom: 15px;
+}
+
+.hero-content p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+/* 🎨 Style du bouton */
+.btn {
+    padding: 12px 24px;
+    text-decoration: none;
+    color: white;
+    background: #28a745;
+    border-radius: 5px;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    opacity: 0.8;
+}
+
+/* 🛰️ Images */
+.image-container {
+    display: flex;
+    gap: 20px;
+}
+
+.satellite {
+    width: 150px;
+    animation: float 3s ease-in-out infinite;
+}
+
+.plate {
+    width: 300px;
+    animation: float 3s ease-in-out infinite reverse;
+}
+
+/* ✨ Effet d'animation */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+/* Section Features */
+.features {
+    text-align: center;
+    padding: 60px 20px;
+    background-color: #f8f9fa;
+    position: relative;
+}
+
+.features .container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.features h2 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 20px;
+}
+
+.features p {
+    font-size: 16px;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* 🌍 Positionnement des images satellites */
+.satellite-left, .satellite-right {
+    width: 120px; /* Ajuste la taille selon tes besoins */
+    position: absolute;
+    top: 10px;
+}
+
+.satellite-left {
+    left: 20px;
+}
+
+.satellite-right {
+    right: 20px;
+}
+
+/* 📱 Responsiveness */
+@media (max-width: 768px) {
+    .satellite-left, .satellite-right {
+        display: none; /* Cache les images sur mobile si besoin */
+    }
+}
+/* 🌌 Section Hero avec fond spatial */
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background: url('../Img/img_bg.png') no-repeat center center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    text-align: center;
+}
+
+/* 🔲 Overlay pour un effet sombre */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Assombrit légèrement */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 📝 Contenu principal */
+.hero-content {
+    max-width: 800px;
+    padding: 20px;
+    z-index: 1;
+}
+
+.hero-content p {
+    font-size: 18px;
+    font-style: italic;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* 🎛️ Bouton stylé */
+.btn {
+    background: #fff;
+    color: #000;
+    padding: 10px 20px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #ffcc00;
+    color: #000;
+}
+
+/* 🛰️ Images satellites positionnées */
+.satellite-left, .satellite-right {
+    width: 150px;
+    position: absolute;
+    top: 10px;
+}
+
+.satellite-left {
+    left: 10px;
+}
+
+.satellite-right {
+    right: 10px;
+}
+
+/* 📱 Responsive Design */
+@media (max-width: 768px) {
+    .hero-content p {
+        font-size: 16px;
+    }
+
+    .satellite-left, .satellite-right {
+        display: none; /* Cache les satellites sur mobile */
+    }
+}
+
+
+    .testimonial-image img {
+        margin-top: 15px;
+    }
+
+    .globe {
+        display: none; /* Cache le globe sur mobile */
+    }
+
+
+
+
+
+
+
+    /* 🌿 Section Testimonials */
+.testimonials {
+    background: #eef0e5; /* Couleur de fond légère */
+    padding: 60px 20px;
+    text-align: center;
+}
+
+/* 🎤 Titre */
+.testimonials h2 {
+    font-size: 32px;
+    color: #3d5a3a;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+/* 🏆 Conteneur Principal */
+.testimonial-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+/* 🌍 Image du Globe */
+.globe {
+    position: absolute;
+    top: -50px;
+    left: 0;
+    width: 150px;
+    opacity: 0.7;
+}
+
+/* 🗂️ Carte Témoignage */
+.testimonial-card {
+    background: white;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 800px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* 📝 Texte Témoignage */
+.testimonial-text {
+    text-align: left;
+    padding: 20px;
+    flex: 1;
+}
+
+.testimonial-text h3 {
+    font-size: 20px;
+    color: #2e4a2a;
+    font-weight: bold;
+}
+
+.testimonial-text .role {
+    font-size: 16px;
+    font-weight: bold;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.testimonial-text p {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* 📸 Image du Témoignage */
+.testimonial-image img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #3d5a3a;
+}
+
+/* 🎭 Boutons de Navigation */
+.prev-btn, .next-btn {
+    background: none;
+    border: none;
+    font-size: 30px;
+    color: #7a9970;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.prev-btn:hover, .next-btn:hover {
+    color: #3d5a3a;
+}
+
+/* 📱 Responsive */
+@media (max-width: 768px) {
+    .testimonial-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .testimonial-image img {
+        margin-top: 15px;
+    }
+
+    .globe {
+        display: none; /* Cache le globe sur mobile */
+    }
+}
+
+
+
+
+
+
+
+
+
+/* 🌌 Stylisation générale de la section Contact */
+.contact-section {
+    text-align: center;
+    padding: 50px 20px;
+    background: url('../Img/img_bg.png') no-repeat center center/cover; /* Image de fond */
+    color: rgb(237, 237, 241);
+}
+
+/* 🌟 Titre */
+.contact-section h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+/* 📩 Conteneur du formulaire */
+.contact-form {
+    max-width: 500px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.2); /* Fond semi-transparent */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
+}
+
+/* 🖋️ Champs du formulaire */
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+/* 📩 Placeholder amélioré */
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+    color: #333;
+    opacity: 0.7;
+}
+
+/* 📝 Zone de texte */
+.contact-form textarea {
+    height: 100px;
+    resize: none;
+}
+
+/* ✉️ Bouton d'envoi */
+.contact-form button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    background: #4CAF50;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+/* 🎨 Effet au survol du bouton */
+.contact-form button:hover {
+    background: #45a049;
+}
+
+
+
+
+
+/* 🎨 Style général du footer */
+.footer {
+    background: #d1d3cd;
+    padding: 20px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+/* 📌 Contenu principal du footer */
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 900px;
+    margin: auto;
+    padding-bottom: 10px;
+}
+
+/* 📞 Section gauche avec les infos */
+.footer-left {
+    text-align: left;
+}
+
+.footer-left p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+/* 🖼️ Logo centré */
+.footer-center img {
+    height: 50px;
+}
+
+/* 📍 Liens à droite */
+.footer-right ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-right ul li {
+    margin: 5px 0;
+}
+
+.footer-right ul li a {
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+    transition: color 0.3s ease;
+}
+
+.footer-right ul li a:hover {
+    color: #4CAF50;
+}
+
+/* 🔽 Ligne de séparation */
+.footer hr {
+    margin: 15px auto;
+    width: 80%;
+    border: 1px solid #aaa;
+}
+
+/* 🏷️ Copyright */
+.copyright {
+    font-size: 12px;
+    color: #555;
+}
+
+
+
+
+
+

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/style2.css') }}">
+</head>
+<body>
+
+    <div class="login-container">
+        <div class="login-box">
+            <img src="{{ url_for('static', filename='Img/logo.png') }}" alt="AgriSat Logo">
+
+            <h2>Login</h2>
+            <form>
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit" class="btn">Get Started</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>

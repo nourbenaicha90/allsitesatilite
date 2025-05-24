@@ -1,0 +1,51 @@
+<!-- newpage.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Choose Option - AgriSat</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/newstyle.css') }}">
+
+</head>
+<body>
+    <header>
+         <img src="{{ url_for('static', filename='Img/logo.png') }}" alt="AgriSat Logo">
+    </header>
+
+    <main>
+        <h1>Choose your Option</h1>
+        <div class="card-container">
+            <div class="card">
+                <h2>Important Class</h2>
+                <p>
+                    Accurately detects the dominant class in an image to 
+                    streamline classification and improve clarity.
+                </p>
+                <a href=  "{{ url_for('important_class') }}"  class="btn">Get started</a>
+
+            </div>
+            <div class="card">
+                <h2>Segment and Classify Image</h2>
+                <p>
+                    Breaks down images into meaningful parts<br>
+                    allowing for precise<br>
+                    crop segmentation  <br>
+                    and better insights
+                </p>
+                <a href= "{{ url_for('segment') }}" class="btn">Get started</a>
+            </div>
+            <div class="card dark">
+                <h2>Analyse Image using Spectral Indices</h2>
+                <p>
+                    Measure plant vitality using NDVI<br>
+                    and other vegetation indices <br>
+                    for enhanced crop monitoring.
+                </p>
+                <a href="{{ url_for('analyse_page') }}" class="btn">Get started</a>
+
+            </div>
+        </div>
+    </main>
+</body>
+</html>

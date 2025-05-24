@@ -1,0 +1,248 @@
+<!-- D:\Master\Master_2\S2\Version01\exemple_web\AllSite\templates\analyse_result.html -->
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>نتائج تحليل الصور - ArgiSat</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      padding: 20px;
+      direction: rtl;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .box_info {
+      width: 48%;
+      min-width: 300px;
+    }
+
+    .image-container {
+      position: relative;
+      height: auto;
+      margin-top: 20px;
+    }
+
+    .ndvi-img {
+      display: none;
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .ndvi-img.active {
+      display: block;
+    }
+
+    .dots {
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+      gap: 10px;
+    }
+
+    .dot {
+      height: 14px;
+      width: 14px;
+      background-color: #ccc;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .dot.active {
+      background-color: #4CAF50;
+    }
+
+    .progress-container {
+      width: 100%;
+      background-color: #0e8030;
+      border-radius: 10px;
+      overflow: hidden;
+      height: 25px;
+      margin: 15px 0;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background-color: #38a169;
+      text-align: center;
+      color: white;
+      font-weight: bold;
+      transition: width 0.4s ease;
+    }
+
+    /* ✅ استجابة الهاتف */
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        align-items: center;
+        padding: 15px;
+      }
+
+      .box_info, .box_Imgs {
+        width: 100%;
+      }
+
+      .ndvi-img {
+        height: auto;
+        max-height: 250px;
+      }
+
+      .progress-container {
+        height: 20px;
+      }
+
+      .progress-bar {
+        font-size: 14px;
+      }
+
+      h2 {
+        font-size: 20px;
+      }
+
+      p {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  
+
+
+  <form id="uploadForm" action="" method="POST" enctype="multipart/form-data">
+  <input type="file" id="imageUpload" accept=".tif,.tiff" name="image" style="display: none;" required>
+  <button type="button" class="btn" id="uploadTrigger" >
+    📤 رفع صورة جديدة
+  </button>
+</form>
+
+
+  <div class="container">
+      
+
+    <div class="box_info">
+      <h2>المؤشر: NDVI</h2>
+      <p>عدد الحزم: <strong>{{ count }}</strong></p>
+      <p>NDVI العام: <strong id="ndvi-value">{{ mean_ndvi }}</strong></p>
+      <p id="description">{{ health_status }}</p>
+      <div class="progress-container">
+        <div class="progress-bar" id="progress-bar">
+          {{ mean_ndvi }}
+        </div>
+      </div>
+    </div>
+
+    <div class="box_Imgs">
+      <div class="image-container">
+        {% for image in image_files %}
+          <img src="{{ url_for('static', filename='results/' ~ image) }}"
+               class="ndvi-img {% if loop.first %}active{% endif %}"
+               alt="NDVI Image {{ loop.index }}">
+        {% endfor %}
+      </div>
+
+      <!-- نقاط للتنقل -->
+      <div class="dots">
+        {% for image in image_files %}
+          <span class="dot {% if loop.first %}active{% endif %}" data-index="{{ loop.index0 }}"></span>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <script>
+  const uploadBtn = document.getElementById('uploadTrigger');
+  const fileInput = document.getElementById('imageUpload');
+  const form = document.getElementById('uploadForm');
+
+  uploadBtn.addEventListener('click', () => {
+    fileInput.click();
+  });
+
+  fileInput.addEventListener('change', () => {
+    if (fileInput.files.length > 0) {
+      const confirmUpload = confirm("هل أنت متأكد أنك تريد رفع صورة جديدة؟");
+      if (confirmUpload) {
+        form.submit();  // ✔️ هذا يعيد تحميل الصفحة بنفس الرابط لكن بنتائج جديدة
+      } else {
+        fileInput.value = "";
+      }
+    }
+  });
+</script>
+
+  <script>
+  
+  
+
+
+
+
+
+
+
+
+    const dots = document.querySelectorAll(".dot");
+    const images = document.querySelectorAll(".ndvi-img");
+    const ndviValueElem = document.querySelector("#ndvi-value");
+    const bandsElem = document.querySelector(".box_info p:nth-of-type(1) strong");
+    const descriptionElem = document.querySelector("#description");
+    const progressBar = document.querySelector("#progress-bar");
+
+    // const ndviData = [
+    //   {
+    //     bands: {{ count }},
+    //     value: {{ mean_ndvi }},
+    //     description: "{{ health_status }}"
+    //   }
+    // ];
+
+    dots.forEach(dot => {
+      dot.addEventListener("click", () => {
+        const index = parseInt(dot.getAttribute("data-index"));
+        const data = ndviData[0];  // حتى الآن نعرض نفس البيانات لكل صورة
+
+        // تحديث الصور
+        dots.forEach(d => d.classList.remove("active"));
+        images.forEach(img => img.classList.remove("active"));
+        dot.classList.add("active");
+        images[index].classList.add("active");
+
+        // تحديث البيانات
+        ndviValueElem.textContent = data.value.toFixed(2);
+        bandsElem.textContent = data.bands;
+        descriptionElem.textContent = data.description;
+
+        // شريط التقدم
+        const progressPercent = ((data.value + 1) / 2) * 100;
+        progressBar.style.width = `${progressPercent}%`;
+        progressBar.textContent = data.value.toFixed(2);
+
+        // لون الشريط حسب القيمة
+        if (data.value > 0.3) {
+          progressBar.style.backgroundColor = "#38a169"; // أخضر
+        } else if (data.value > 0.1) {
+          progressBar.style.backgroundColor = "#f6ad55"; // برتقالي
+        } else {
+          progressBar.style.backgroundColor = "#e53e3e"; // أحمر
+        }
+      });
+    });
+  </script>
+</body>
+</html>
